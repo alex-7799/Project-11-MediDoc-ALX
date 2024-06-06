@@ -36,12 +36,14 @@ function Copyright(props: any) {
 export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
     try {
-      const loginData = await api.get("/login");
+      const loginData = await api.post("/login", data);
       console.log(loginData);
     } catch (error) {
       console.error(error);
     }
+    
   };
 
   return (
@@ -66,10 +68,10 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
