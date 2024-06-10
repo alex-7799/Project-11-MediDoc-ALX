@@ -3,12 +3,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
 import BigHomeButton from "./BigHomeButton";
 import { MedicalInformation } from "@mui/icons-material";
-import { randomUUID } from "crypto";
 
 const elements = [
   {
@@ -17,47 +13,47 @@ const elements = [
     path: "medHistory",
   },
   {
-    label: "Allergies & reactions",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Immunisations",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "COVID-19 Vaccinations & Tests",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Scans",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Test Results",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Documents",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Hospital Visits",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Advance Care Planning",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
   {
-    label: "Organ Donation",
+    label: "Medical History",
     icon: <MedicalInformation />,
     path: "medHistory",
   },
@@ -87,7 +83,6 @@ export default function Dashboard({ user }) {
                   p: 2,
                   display: "flex",
                   flexDirection: "column",
-                  backgroundColor: "red",
                 }}
               >
                 <Grid container spacing={1}>

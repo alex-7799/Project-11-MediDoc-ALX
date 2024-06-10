@@ -1,4 +1,7 @@
 import { Box, Card, CardContent } from "@mui/material";
+import { isAxiosError } from "axios";
+import { useEffect, useState } from "react";
+import api from "../../../api";
 
 const mockData = [
   {
@@ -204,6 +207,28 @@ const mockData = [
 ];
 
 export default function MedicalHistory({ user }) {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/patient/get_record");
+        console.log(response.data);
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        if (isAxiosError(error)) {
+          setError(error.response);
+        } else {
+          console.error(error);
+        }
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <Box sx={{ flexGrow: 1 }}>
