@@ -208,15 +208,27 @@ const mockData = [
 
 export default function MedicalHistory({ user }) {
   const [data, setData] = useState([]);
+  const [dataList, setDataList] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/patient/get_record");
+        const response = await api.get("/patient/get_record", {
+          params: { patient_id: user.patient_id },
+        });
         console.log(response.data);
         setData(response.data);
+
+        const dataList = [];
+        for (const arr in response.data) {
+          response.data[arr].map((item) => {
+            item.type = arr;
+            dataList.push(item);
+          });
+        }
+        setDataList(dataList);
         setLoading(false);
       } catch (error) {
         if (isAxiosError(error)) {
@@ -235,7 +247,7 @@ export default function MedicalHistory({ user }) {
         <h1>Medical History</h1>
         <p>Filtered By: None</p>
         <p>Current Year: {new Date().getFullYear()}</p>
-        {mockData.map((data, index) => (
+        {dataList?.map((item, index) => (
           <Card
             sx={{
               display: "flex",
@@ -246,18 +258,23 @@ export default function MedicalHistory({ user }) {
           >
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent>
-                <h2>{data.type}</h2>
-                <p>{data.name}</p>
-                <p>{data.reaction}</p>
-                <p>{data.reason}</p>
-                <p>{data.result}</p>
-                <p>{data.dosage}</p>
-                <p>{data.frequency}</p>
+                <h2>{item.type}</h2>
+                <p>{item.name}</p>
+                <p>{item.allergy_name}</p>
+                <p>{item.medicine_name}</p>
+                <p>{item.immunisation_name}</p>
+                <p>{item.document_name}</p>
+                <p>{item.testresult_name}</p>
+                <p>{item.reaction}</p>
+                <p>{item.reason}</p>
+                <p>{item.result}</p>
+                <p>{item.dosage}</p>
+                <p>{item.frequency}</p>
               </CardContent>
             </Box>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent>
-                <p>{data.date}</p>
+                <p>{item.date}</p>
               </CardContent>
             </Box>
           </Card>

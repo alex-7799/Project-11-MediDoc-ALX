@@ -9,52 +9,50 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import { Link } from "react-router-dom";
+
+export const PatientSideMenuListItemBtn = ({
+  label,
+  path,
+  icon,
+}: {
+  label: string;
+  path: string;
+  icon: React.ReactNode;
+}) => {
+  return (
+    <Link to={path} style={{ textDecoration: "none", color: "black" }}>
+      <ListItemButton>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={label} />
+      </ListItemButton>
+    </Link>
+  );
+};
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Home" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Account" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Appointment" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Help" />
-    </ListItemButton>
+    <PatientSideMenuListItemBtn label="Home" path="" icon={<PeopleIcon />} />
+    <PatientSideMenuListItemBtn
+      label="Account"
+      path="account"
+      icon={<DashboardIcon />}
+    />
+    <PatientSideMenuListItemBtn
+      label="Appointment"
+      path="appointment"
+      icon={<AssignmentIcon />}
+    />
   </React.Fragment>
 );
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
-      Saved reports
-    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last appointment" />
+      <ListItemText primary="Log Out" />
     </ListItemButton>
   </React.Fragment>
 );

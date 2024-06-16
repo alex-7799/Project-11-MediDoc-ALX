@@ -74,35 +74,35 @@ export default function Dashboard({ user }) {
           overflow: "auto",
         }}
       >
-        <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Grid container spacing={1}>
-                  {elements.map((element, index) => {
-                    const key = index + "btn-elx-r-";
-                    return (
-                      <Grid item xs={12} md={4} lg={3} key={key}>
-                        <BigHomeButton
-                          label={element.label}
-                          icon={element.icon}
-                          path={element.path}
-                        />
-                      </Grid>
-                    );
-                  })}
-                </Grid>
-              </Paper>
-            </Grid>
+        {/* <Toolbar /> */}
+        <h1>Medical History</h1>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper
+              sx={{
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Grid container spacing={1}>
+                {elements.map((element, index) => {
+                  const key = index + "btn-elx-r-";
+                  return (
+                    <Grid item xs={12} md={4} lg={3} key={key}>
+                      <BigHomeButton
+                        label={element.label}
+                        icon={element.icon}
+                        path={element.path}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Paper>
           </Grid>
-        </Container>
+        </Grid>
       </Box>
     </Box>
   );

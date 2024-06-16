@@ -14,12 +14,16 @@ import {
   Container,
   Grid,
   styled,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { mainListItems, secondaryListItems } from "./listItems";
 import React from "react";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MuiDrawer from "@mui/material/Drawer";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 const drawerWidth: number = 240;
 
@@ -71,7 +75,13 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-export default function PatientRoot({ user }: { user: any }) {
+export default function PatientRoot({
+  user,
+  onLogout,
+}: {
+  user: any;
+  onLogout: () => void;
+}) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -139,7 +149,12 @@ export default function PatientRoot({ user }: { user: any }) {
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            <ListItemButton onClick={onLogout}>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log Out" />
+            </ListItemButton>
           </List>
         </Drawer>
         <Box
@@ -155,7 +170,7 @@ export default function PatientRoot({ user }: { user: any }) {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, mx: 4 }}>
             <Grid container spacing={3}>
               <Outlet />
             </Grid>

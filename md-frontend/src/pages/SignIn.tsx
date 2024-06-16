@@ -41,7 +41,7 @@ export default function SignIn({ callback }: { callback: (user) => void }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
-      const response = await api.post("/login", data);
+      const response = await api.post("/login/patient", data);
       //console.log(response);
       if (response.status === 200) {
         setUser(response.data);

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { CssBaseline } from "@mui/material";
 import MedicalHistory from "./pages/Patient/MedicalHistory/main";
 import PatientRoot from "./pages/Patient/PatientRoot";
+import Account from "./pages/Patient/Account/main";
 
 function App() {
   const defaultTheme = createTheme();
@@ -23,9 +24,13 @@ function App() {
           <Routes>
             <Route path="/" element={<SignIn callback={handleLogin} />} />
             <Route element={<ProtectedRoute user={user} />}>
-              <Route path="patient" element={<PatientRoot user={user} />}>
+              <Route
+                path="patient"
+                element={<PatientRoot user={user} onLogout={handleLogout} />}
+              >
                 <Route index element={<Dashboard user={user} />} />
                 <Route path="dashboard" element={<Dashboard user={user} />} />
+                <Route path="account" element={<Account user={user} />} />
                 <Route
                   path="medHistory"
                   element={<MedicalHistory user={user} />}
